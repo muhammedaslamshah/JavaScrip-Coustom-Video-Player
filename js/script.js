@@ -1,11 +1,15 @@
 // Initialize importent 
 let playBtn = document.getElementById('play-btn');
 let video = document.querySelector('.video');
+let progressBar = document.querySelector('.progress-bar');
+
 
 
 // Initial Time Video Condition
 let isVideoPlaying = false;
 
+
+// Functions
 // Video Controls 
 // 1. Video Play/Pause Button
 function playOrPuaseVideo(){
@@ -19,6 +23,15 @@ function playOrPuaseVideo(){
         playBtn.classList.replace('fa-pause', 'fa-play');
     }
 }
+// 2. Update Video Progresbar 
+function updateProgressbar(event){
+    let widthOfVideo = (event.target.currentTime / event.target.duration)*100;
+    progressBar.style.cssText = `width : ${widthOfVideo}%;background-color: red`;
+    console.log(widthOfVideo);
+    
+    
+}
+
 
 // addeventlistener
 playBtn.addEventListener('click', playOrPuaseVideo);
@@ -32,3 +45,4 @@ document.addEventListener('keydown',function(event){
     }
 });
 
+video.addEventListener('timeupdate', updateProgressbar);
